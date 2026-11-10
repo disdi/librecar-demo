@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Pelican
+        run: pip install "pelican<4.12" markdown typogrify pytz beautifulsoup4 webassets cssmin
+      - name: Fetch the Attila theme
+        run: git clone --depth 1 https://github.com/arulrajnet/attila.git attila
+      - name: Build
+        run: pelican content -o output -s publishconf.py
+      - name: Keep GitHub Pages from running Jekyll
+        run: touch output/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: output
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

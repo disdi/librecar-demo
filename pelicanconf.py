@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'Saket Sinha'
 SITENAME = u'Libre Car'
 SITESUBTITLE = u'Libre Car Control'
-SITEURL = 'http://librecar.dev'
+SITEURL = 'https://saketsinha.de/librecar-demo'
 
 PATH = 'content'
 
@@ -56,7 +56,6 @@ STATIC_PATHS = ['assets']
 EXTRA_PATH_METADATA = {
     'assets/robots.txt': {'path': 'robots.txt'},
     'assets/favicon.ico': {'path': 'favicon.ico'},
-    'assets/CNAME': {'path': 'CNAME'}
 }
 
 # Post and Pages path
@@ -140,7 +139,7 @@ THEME = 'attila'
 ### Theme specific settings
 
 # To set background image for the home page.
-HOME_COVER = 'https://github.com/disdi/attila-demo/raw/main/content/assets/images/logo.png'
+HOME_COVER = 'https://github.com/disdi/librecar-demo/raw/main/content/assets/images/logo.png'
 
 # Custom Header
 
@@ -180,13 +179,13 @@ AUTHOR_META = {
   }
 }
 
-MENUITEMS = (('Home', '/'),
+MENUITEMS = (('Home', '/librecar-demo/'),
              #('Tag', '/tag/nlnet/'),
              #('Author', '/author/disdi/'),
              #('Category', '/category/nlnet/'),
              #('Archives','/2023/'),
              ('Milestones', 'https://disdi.github.io/librecar-milestone'),
-             ('Wiki', 'https://disdi.github.io/librecar-wiki'))
+             ('Wiki', 'https://librecar.dev'))
 
 SHOW_ARTICLE_MODIFIED_TIME = False
 SHOW_AUTHOR_BIO_IN_ARTICLE = False
